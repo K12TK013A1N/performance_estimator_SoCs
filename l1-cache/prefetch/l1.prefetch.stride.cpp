@@ -13,7 +13,7 @@ int main(){
 
     int n = 4096 * 16; // 2^12
     int j = 0;
-    unsigned long long d = static_cast<unsigned long long>(size) * n; // total iterations
+    unsigned long long d = static_cast<unsigned long long>(size) * n; // total iterations 2^30
 
     for (unsigned long long i = 0; i < d; i++){
         j = arr[j];
