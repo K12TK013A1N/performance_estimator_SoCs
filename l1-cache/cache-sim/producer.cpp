@@ -55,11 +55,16 @@ vector<int> generateRandomness(int arr_size, int stride_size){
 }
 
 void init(fstream &myFile, int arr_size){
+  int imm = arr_size;
+  int first_16 = imm>>16;
+  int rest_16 = imm ^ (first_16<<16);
   myFile<<".section .text\n";
   myFile<<".global _start\n";
   myFile<<"_start:\n";
+  myFile<<"    mov x5, #"<<to_string(rest_16)<<"\n";
+  myFile<<"    movk x5, #"<<to_string(first_16)<<", lsl #16\n";
   myFile<<"    add x0, sp, #0\n"; //x0 stores last index i.e n-1
-  myFile<<"    sub sp, sp, #" << to_string(arr_size)<<"\n";
+  myFile<<"    sub sp, sp, x5\n";
   myFile<<"    add x1, sp, #0\n"; //x1 stores first index i.e 0
   myFile<<"    add x2, x1, #0\n";
   myFile<<"    add x3, x1, #0\n";
