@@ -9,9 +9,8 @@ int main(){
         arr[i] = i+1;
     }
     arr[size-1] = 0;
-    register int n=4096; //2^12
     register int j = 0;
-    for(register int i=0; i<size*n; i++){
+    for(register int i=0; i<1073741824; i++){
         j = arr[j];
     }
     cout << j;
